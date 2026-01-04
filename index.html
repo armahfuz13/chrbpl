@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chattogram Royals | BPL 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --yellow: #FFCB05;
+            --dark-blue: #153D65;
+            --bright-blue: #5837FF;
+            --bg-dark: #0a0e1a;
+            --bg-darker: #050810;
+            --text-light: #ffffff;
+            --text-gray: #a0aec0;
+        }
+
+        body {
+            font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--yellow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(255, 203, 5, 0.3));
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--yellow);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--yellow);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.9) 0%, rgba(21, 61, 101, 0.9) 100%), 
+                        url('./images/hero-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--bright-blue) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.2); opacity: 0.15; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 20px rgba(255, 203, 5, 0.5));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--yellow) 0%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 2rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            font-family: 'roboto', sans-serif;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--yellow);
+            margin-bottom: 2rem;
+        }
+
+        .bpl-logo {
+            width: 150px;
+            margin: 2rem auto;
+            display: block;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 203, 5, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+        }
+
+        .btn-secondary:hover {
+            background: var(--yellow);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Content Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--yellow);
+        }
+
+        /* Team Banner */
+        .team-banner {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 203, 5, 0.3);
+        }
+
+        .team-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--bg-darker) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 203, 5, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--yellow);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Captain Section */
+        .captain-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--bg-darker) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            border: 2px solid var(--yellow);
+        }
+
+        .captain-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .captain-info h3 {
+            color: var(--yellow);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .captain-info p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Squad Grid */
+        .squad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--bg-darker) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .player-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 203, 5, 0.2);
+        }
+
+        .player-header {
+            background: var(--dark-blue);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .player-name {
+            font-size: 1.3rem;
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .player-role {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .player-info {
+            padding: 1.5rem;
+        }
+
+        .player-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 203, 5, 0.1);
+        }
+
+        .player-detail:last-child {
+            border-bottom: none;
+        }
+
+        /* Fixtures */
+        .fixture-card {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--bg-darker) 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--yellow);
+            transition: all 0.3s;
+        }
+
+        .fixture-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(255, 203, 5, 0.2);
+        }
+
+        .fixture-date {
+            color: var(--yellow);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .match-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .team {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .score {
+            color: var(--text-gray);
+        }
+
+        .vs {
+            font-size: 1.5rem;
+            color: var(--yellow);
+            font-weight: bold;
+        }
+
+        .result {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 203, 5, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            color: var(--yellow);
+        }
+
+        .match-time {
+            color: var(--text-gray);
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Points Table - Glossy & Modern */
+.table-container {
+    overflow-x: auto;
+    background: rgba(15, 15, 25, 0.7); /* Dark semi-transparent base */
+    backdrop-filter: blur(10px); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 0 10px rgba(255, 203, 5, 0.05);
+    border: 1px solid rgba(255, 203, 5, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(255, 203, 5, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+th {
+    background: linear-gradient(135deg, var(--dark-blue), #1a2c4e);
+    color: var(--yellow);
+    padding: 1.2rem;
+    text-align: left;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    border-top: 2px solid rgba(255, 203, 5, 0.2);
+    border-bottom: 2px solid rgba(255, 203, 5, 0.2);
+}
+
+th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--yellow), transparent);
+    opacity: 0.6;
+}
+
+td {
+    padding: 1.2rem;
+    border-bottom: 1px solid rgba(255, 203, 5, 0.08);
+    color: #ddd;
+    transition: all 0.2s ease;
+}
+
+tr:hover {
+    background: rgba(255, 203, 5, 0.08);
+    box-shadow: 0 4px 12px rgba(255, 203, 5, 0.1);
+    transform: scale(1.005);
+}
+
+tr.highlight {
+    background: rgba(255, 203, 5, 0.12);
+    border-left: 6px solid var(--yellow);
+    box-shadow: 0 0 15px rgba(255, 203, 5, 0.2);
+    position: relative;
+}
+
+tr.highlight::before {
+    
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--yellow);
+    animation: shine 2s infinite alternate;
+}
+
+@keyframes shine {
+    from { opacity: 0.6; }
+    to { opacity: 1; filter: drop-shadow(0 0 5px var(--yellow)); }
+}
+
+.position {
+    font-weight: bold;
+    color: var(--yellow);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Optional: Add subtle glow to numbers */
+td:not(.position):not(.team-name) {
+    text-shadow: 0 0 3px rgba(255, 203, 5, 0.3);
+}
+
+/* Team name styling */
+.team-name {
+    font-weight: bold;
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+tr:hover .team-name {
+    color: var(--yellow);
+}
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+    th, td {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--bg-darker) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-5px);
+        }
+
+        .about-card h3 {
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Stadium Section */
+        .stadium-section {
+            margin: 4rem 0;
+        }
+
+        .stadium-image {
+    width: 50%;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: block;
+    margin: 0 auto;
+}
+
+        /* Sponsor Section */
+        .sponsor-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--bg-darker) 100%);
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .sponsor-section h3 {
+            color: var(--yellow);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .sponsor-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .sponsor-logo {
+    height: 80px;
+    width: auto;
+    opacity: 0.8;
+    transition: all 0.3s;
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.sponsor-logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--dark-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--yellow);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--yellow);
+            color: var(--bg-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-darker);
+            padding: 2rem;
+            text-align: center;
+            border-top: 2px solid var(--yellow);
+        }
+
+        footer p {
+            color: var(--text-gray);
+        }
+
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--bg-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+
+            .hero-logo {
+                width: 150px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .match-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .captain-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showSection('home')">
+                <img src="./images/chattogram-royals-logo.png" alt="Chattogram Royals" class="logo-img">
+                <span class="logo-text">CHATTOGRAM ROYALS</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('squad')">Squad</a></li>
+                <li><a href="#" onclick="showSection('fixtures')">Fixtures</a></li>
+                <li><a href="#" onclick="showSection('points')">Points Table</a></li>
+                <li><a href="#" onclick="showSection('about')">About</a></li>
+            </ul>
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <div class="hero">
+            <div class="hero-content">
+                <img src="./images/chattogram-royals-logo.png" alt="Chattogram Royals Logo" class="hero-logo">
+                <h1>CHATTOGRAM ROYALS</h1>
+                <p class="tagline">ক্রিকেট যাদু মন্তরত, কাপ আইন্নুম বন্দরত</p>
+                <img src="./images/bpl-logo.png" alt="BPL 2026" class="bpl-logo">
+                <p class="subtitle">Together We Rise | BPL 2026</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showSection('fixtures')">View Fixtures</a>
+                    <a href="#" class="btn btn-secondary" onclick="showSection('squad')">Meet the Squad</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 5rem 2rem; max-width: 1400px; margin: 0 auto;">
+            <div class="team-banner">
+                <img src="./images/team-banner.jpg" alt="Chattogram Royals Team">
+            </div>
+
+            <h2>Season Highlights</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1st</div>
+                    <div class="stat-label">League Position</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Wins</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Points</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1.517</div>
+                    <div class="stat-label">Net Run Rate</div>
+                </div>
+            </div>
+
+            <h2>Our Captain</h2>
+            <div class="captain-section">
+                <img src="./images/captain.jpg" alt="Mahedi Hasan - Captain" class="captain-image">
+                <div class="captain-info">
+                    <h3>Mahedi Hasan (Captain)</h3>
+                    <p><strong>Role:</strong> Allrounder</p>
+                    <p><strong>Age:</strong> 30y 353d</p>
+                    <p><strong>Batting:</strong> Right-hand Bat</p>
+                    <p><strong>Bowling:</strong> Right arm Offbreak</p>
+                    <p style="margin-top: 1rem;">Leading Chattogram Royals with passion and strategic brilliance, Mahedi Hasan brings experience and leadership to guide our team to victory in BPL 2026.</p>
+                </div>
+            </div>
+
+            <h2>Recent Results</h2>
+            <div class="fixture-card">
+                <div class="fixture-date">🏏 Sun, 04 Jan '26 - 11th Match</div>
+                <div class="match-info">
+                    <div class="team">
+                        <div class="team-name">Sylhet Titans</div>
+                        <div class="score">126/7 (16/20 ov, T:127)</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <div class="team-name">Chattogram Royals</div>
+                        <div class="score">130/1</div>
+                    </div>
+                </div>
+                <div class="result">✅ Chattogram won by 9 wickets (with 24 balls remaining)</div>
+            </div>
+
+            <h2>Next Match</h2>
+            <div class="fixture-card">
+                <div class="fixture-date">📅 Mon, 05 Jan '26 - 14th Match (N)</div>
+                <div class="match-info">
+                    <div class="team">
+                        <div class="team-name">Chattogram Royals</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <div class="team-name">Rangpur Riders</div>
+                    </div>
+                </div>
+                <div class="match-time">🕕 6:00 PM Local | Sylhet, Bangladesh Premier League</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Squad Section -->
+    <section id="squad">
+        <h2>Team Squad</h2>
+        
+        <h3 style="color: var(--yellow); margin: 3rem 0 2rem; font-size: 2rem;">Batters</h3>
+        <div class="squad-grid">
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Adam Rossington</div>
+                    <div class="player-role">Wicket-keeper Batter</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Masood Gurbaz</div>
+                    <div class="player-role">Batter</div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Mirza Tahir Baig</div>
+                    <div class="player-role">Batter</div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Mahfijul Islam</div>
+                    <div class="player-role">Batter</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>21y 265d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Legbreak</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Mahmudul Hasan Joy</div>
+                    <div class="player-role">Top-order Batter</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>25y 17d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Mohammad Naim</div>
+                    <div class="player-role">Batter</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>26y 100d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Left-hand Bat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color: var(--yellow); margin: 3rem 0 2rem; font-size: 2rem;">All-rounders</h3>
+        <div class="squad-grid">
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Abu Hider</div>
+                    <div class="player-role">Bowling Allrounder</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>29y 289d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Left arm Fast medium</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Aamir Jamal</div>
+                    <div class="player-role">Allrounder</div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Mahedi Hasan</div>
+                    <div class="player-role">Allrounder (Captain)</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>30y 353d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Right arm Offbreak</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Salman Hossain Emon</div>
+                    <div class="player-role">Allrounder</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>28y 165d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Right arm Fast medium</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Shuvagata Hom</div>
+                    <div class="player-role">Batting Allrounder</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>39y 19d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Right arm Offbreak</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Asif Ali</div>
+                    <div class="player-role">Allrounder</div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Ziaur Rahman</div>
+                    <div class="player-role">Allrounder</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>38y 363d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Right arm Fast medium</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color: var(--yellow); margin: 3rem 0 2rem; font-size: 2rem;">Bowlers</h3>
+        <div class="squad-grid">
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Arafat Sunny</div>
+                    <div class="player-role">Bowler</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>39y 62d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Left-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Slow Left arm Orthodox</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Mukidul Islam</div>
+                    <div class="player-role">Bowler</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>25y 153d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Right-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Right arm Medium fast</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Shoriful Islam</div>
+                    <div class="player-role">Bowler</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>24y 180d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Left-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Left arm Fast medium</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Sumon Khan</div>
+                    <div class="player-role">Bowler</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>25y 321d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Left-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Right arm Medium</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Tanvir Islam</div>
+                    <div class="player-role">Bowler</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>29y 36d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Left-hand Bat</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Bowling:</span>
+                        <span>Slow Left arm Orthodox</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-header">
+                    <div class="player-name">Zahiduzzaman</div>
+                    <div class="player-role">Bowler</div>
+                </div>
+                <div class="player-info">
+                    <div class="player-detail">
+                        <span>Age:</span>
+                        <span>29y 150d</span>
+                    </div>
+                    <div class="player-detail">
+                        <span>Batting:</span>
+                        <span>Left-hand Bat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixtures Section -->
+    <section id="fixtures">
+        <h2>Match Schedule & Results</h2>
+
+        <h3 style="color: var(--yellow); margin: 3rem 0 2rem; font-size: 1.8rem;">📊 Recent Results</h3>
+        
+        <div class="fixture-card">
+            <div class="fixture-date">Fri, 26 Dec '25 - 2nd Match (N)</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                    <div class="score">174/6</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Noakhali Express</div>
+                    <div class="score">109 (16.5/20 ov, T:175)</div>
+                </div>
+            </div>
+            <div class="result">✅ Chattogram won by 65 runs</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Mon, 29 Dec '25 - 5th Match</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                    <div class="score">102</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Rangpur Riders</div>
+                    <div class="score">107/3 (15/20 ov, T:103)</div>
+                </div>
+            </div>
+            <div class="result">❌ Rangpur won by 7 wickets (with 30 balls remaining)</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Fri, 02 Jan '26 - 9th Match</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Dhaka Capitals</div>
+                    <div class="score">122</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                    <div class="score">123/0 (12.4/20 ov, T:123)</div>
+                </div>
+            </div>
+            <div class="result">✅ Chattogram won by 10 wickets (with 44 balls remaining)</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Sun, 04 Jan '26 - 11th Match</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Sylhet Titans</div>
+                    <div class="score">126/7</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                    <div class="score">130/1 (16/20 ov, T:127)</div>
+                </div>
+            </div>
+            <div class="result">✅ Chattogram won by 9 wickets (with 24 balls remaining)</div>
+        </div>
+
+        <h3 style="color: var(--yellow); margin: 4rem 0 2rem; font-size: 1.8rem;">📅 Upcoming Matches</h3>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Mon, 05 Jan '26 - 14th Match (N)</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Rangpur Riders</div>
+                </div>
+            </div>
+            <div class="match-time">🕕 6:00 PM Local (12:00 PM GMT) | Sylhet, Bangladesh Premier League</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Wed, 07 Jan '26 - 16th Match (N)</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Sylhet Titans</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                </div>
+            </div>
+            <div class="match-time">🕕 6:00 PM Local (12:00 PM GMT) | Sylhet, Bangladesh Premier League</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Fri, 09 Jan '26 - 19th Match</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Rajshahi Warriors</div>
+                </div>
+            </div>
+            <div class="match-time">🕑 2:00 PM Local (8:00 AM GMT) | Sylhet, Bangladesh Premier League</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Thu, 15 Jan '26 - 25th Match</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Noakhali Express</div>
+                </div>
+            </div>
+            <div class="match-time">🕐 1:00 PM Local (7:00 AM GMT) | Mirpur, Bangladesh Premier League</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Fri, 16 Jan '26 - 28th Match (N)</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Rajshahi Warriors</div>
+                </div>
+            </div>
+            <div class="match-time">🕖 7:00 PM Local (1:00 PM GMT) | Mirpur, Bangladesh Premier League</div>
+        </div>
+
+        <div class="fixture-card">
+            <div class="fixture-date">Sat, 17 Jan '26 - 30th Match (N)</div>
+            <div class="match-info">
+                <div class="team">
+                    <div class="team-name">Dhaka Capitals</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team">
+                    <div class="team-name">Chattogram Royals</div>
+                </div>
+            </div>
+            <div class="match-time">🕕 6:00 PM Local (12:00 PM GMT) | Mirpur, Bangladesh Premier League</div>
+        </div>
+    </section>
+
+    <!-- Points Table Section -->
+    <section id="points">
+        <h2>BPL 2026 Points Table</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Team</th>
+                        <th>M</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>T</th>
+                        <th>N/R</th>
+                        <th>PT</th>
+                        <th>NRR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td class="position">1</td>
+                        <td><strong>Chattogram Royals</strong></td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><strong>6</strong></td>
+                        <td>1.517</td>
+                    </tr>
+                    <tr>
+                        <td class="position">2</td>
+                        <td><strong>Rajshahi Warriors<strong></td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>6</td>
+                        <td>0.145</td>
+                    </tr>
+                    <tr>
+                        <td class="position">3</td>
+                        <td><strong>Rangpur Riders</strong></td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>0.885</td>
+                    </tr>
+                    <tr>
+                        <td class="position">4</td>
+                        <td><strong>Sylhet Titans<strong></td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>-0.452</td>
+                    </tr>
+                    <tr>
+                        <td class="position">5</td>
+                        <td><strong>Dhaka Capitals<strong></td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>-0.937</td>
+                    </tr>
+                    <tr>
+                        <td class="position">6</td>
+                        <td><strong>Noakhali Express<strong></td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>-1.393</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="text-align: center; color: var(--text-gray); margin-top: 2rem;">
+            M = Matches, W = Wins, L = Losses, T = Ties, N/R = No Result, PT = Points, NRR = Net Run Rate
+        </p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Chattogram Royals</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>⚓ Our Story</h3>
+                <p>Chattogram Royals represents the vibrant port city of Chattogram in the Bangladesh Premier League. With the spirit of champions and the power of unity, we bring pride to the port city. Our motto "ক্রিকেট যাদু মন্তরত, কাপ আইন্নুম বন্দরত" reflects our determination to bring the championship trophy home.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>👑 Team Philosophy</h3>
+                <p>Together We Rise - This isn't just our slogan, it's our way of life. We believe in teamwork, dedication, and the relentless pursuit of excellence. Led by captain Mahedi Hasan and supported by international stars and local talent, we're building a legacy.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>🏏 Home Ground</h3>
+                <p>We play our matches at various venues across Bangladesh, primarily at Bir Shrestho Flight Lieutenant Matiur Rahman Cricket Stadium. The energy of our fans, the roar of the crowd, and the passion for cricket drives us forward in every match.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>🏆 BPL 2026 Campaign</h3>
+                <p>Currently leading the BPL 2026 points table with 3 wins from 4 matches, Chattogram Royals are showing championship form. With a stellar Net Run Rate of 1.517 and dominant performances, we're marching towards glory.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>🎯 Our Vision</h3>
+                <p>To become the most successful franchise in Bangladesh Premier League history, nurturing local talent while competing at the highest level. We aim to inspire the youth of Chattogram and create unforgettable cricketing moments.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>💙 Sponsors</h3>
+                <p>Proudly sponsored by the Bangladesh Cricket Board (BCB). We're grateful for the support of BCB and all our partners who believe in our vision and mission to excel in Bangladesh cricket.</p>
+            </div>
+        </div>
+
+        <div class="stadium-section">
+            <h3 style="color: var(--yellow); margin: 3rem 0 2rem; text-align: center; font-size: 2rem;">Home Ground</h3>
+            <img src="./images/stadium.webp" alt="Sylhet International Cricket Stadium" class="stadium-image">
+        </div>
+
+        <div class="sponsor-section">
+            <h3>Official Sponsor</h3>
+            <div class="sponsor-logos">
+                <img src="./images/bcb-logo.png" alt="Bangladesh Cricket Board" class="sponsor-logo">
+            </div>
+        </div>
+
+        <h3 style="color: var(--yellow); margin: 4rem 0 2rem; text-align: center; font-size: 2rem;">Connect With Us</h3>
+        <div class="social-links">
+            <a href="https://www.facebook.com/ChattogramRoyal/" target="_blank" class="social-link" title="Facebook">
+                <span>f</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logos">
+            <img src="./images/chattogram-royals-logo.png" alt="Chattogram Royals" class="footer-logo">
+            <img src="./images/bpl-logo.png" alt="BPL 2026" class="footer-logo">
+            <img src="./images/bcb-logo.png" alt="Bangladesh Cricket Board" class="footer-logo";>
+        </div>
+        <p style="margin-top: 1.5rem;">&copy; 2026 Chattogram Royals | Bangladesh Premier League</p>
+        <p style="margin-top: 0.5rem;">ক্রিকেট যাদু মন্তরত, কাপ আইন্নুম বন্দরত</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('navLinks');
+            const toggle = document.querySelector('.mobile-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
+                    
